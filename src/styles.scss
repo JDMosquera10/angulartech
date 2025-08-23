@@ -1,17 +1,13 @@
 @use '@angular/material' as mat;
 @use 'sass:map';
 @use '../custome-theme_theme-colors.scss' as custome;
-// @import "gridstack/dist/gridstack.min.css";
 
+// Importar variables y mixins compartidos
+@import 'app/shared/styles/variables';
+@import 'app/shared/styles/mixins';
+@import 'app/shared/styles/components';
 
-
-$color-primary: #02BEC1;
-$color-primary-alt: #04c0c3;
-$color-dark: #192230;
-$color-dark-alt: #202837;
-$color-accent: #a44a5d;
-$color-warning: #f0961b;
-
+// Angular Material theme
 html {
   @include mat.theme((color: (theme-type: dark,
         primary: custome.$primary-palette,
@@ -21,12 +17,143 @@ html {
       customProperties: true));
 }
 
+// ==============================================
+// ESTILOS BASE GLOBALES
+// ==============================================
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-text-primary;
+  background-color: $color-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// ==============================================
+// TIPOGRAFÍA GLOBAL
+// ==============================================
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 $spacing-md;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  color: $color-text-primary;
+}
+
+h1 { font-size: $font-size-display; }
+h2 { font-size: $font-size-xxl; }
+h3 { font-size: $font-size-xl; }
+h4 { font-size: $font-size-lg; }
+h5 { font-size: $font-size-base; }
+h6 { font-size: $font-size-sm; }
+
+p {
+  margin: 0 0 $spacing-md;
+  color: $color-text-secondary;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+  transition: $transition-fast;
+  
+  &:hover {
+    color: $color-primary-light;
+  }
+}
+
+// ==============================================
+// UTILIDADES GLOBALES
+// ==============================================
+
+.text-primary { color: $color-primary !important; }
+.text-secondary { color: $color-text-secondary !important; }
+.text-danger { color: $color-danger !important; }
+.text-warning { color: $color-warning !important; }
+.text-success { color: $color-success !important; }
+
+.bg-primary { background-color: $color-primary !important; }
+.bg-surface { background-color: $color-surface !important; }
+.bg-surface-alt { background-color: $color-surface-alt !important; }
+
+// Espaciado
+.m-0 { margin: 0 !important; }
+.p-0 { padding: 0 !important; }
+.mt-1 { margin-top: $spacing-sm !important; }
+.mt-2 { margin-top: $spacing-md !important; }
+.mt-3 { margin-top: $spacing-lg !important; }
+.mb-1 { margin-bottom: $spacing-sm !important; }
+.mb-2 { margin-bottom: $spacing-md !important; }
+.mb-3 { margin-bottom: $spacing-lg !important; }
+
+// ==============================================
+// SCROLLBAR PERSONALIZADA GLOBAL
+// ==============================================
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $color-surface-alt;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color-primary;
+  border-radius: $border-radius-sm;
+  
+  &:hover {
+    background: $color-primary-light;
+  }
+}
+
+// ==============================================
+// OVERRIDES DE ANGULAR MATERIAL
+// ==============================================
+
+// Botones Material
+.mat-mdc-button,
+.mat-mdc-raised-button {
+  @include button-primary;
+}
+
+.mat-mdc-outlined-button {
+  @include button-secondary;
+}
+
+// Cards Material
+mat-card {
+  @include card-base;
+}
+
+// Form fields Material
+.mat-mdc-form-field {
+  width: 100%;
+  
+  .mat-mdc-text-field-wrapper {
+    background-color: $input-bg !important;
+  }
+  
+  &.mat-focused .mat-mdc-form-field-focus-overlay {
+    background-color: rgba($color-primary, 0.1);
+  }
+}
+
+// Tablas Material
+.mat-mdc-table {
+  background-color: transparent !important;
 }

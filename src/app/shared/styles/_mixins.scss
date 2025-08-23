@@ -1,0 +1,344 @@
+/**
+ * Mixins SCSS reutilizables para componentes
+ * Promueve la consistencia y reduce la duplicación de código
+ */
+
+@import 'variables';
+
+// ==============================================
+// MIXINS DE CARDS
+// ==============================================
+
+@mixin card-base {
+  background-color: $card-bg;
+  border-radius: $card-border-radius;
+  padding: $card-padding;
+  box-shadow: $card-shadow;
+  transition: $transition-base;
+  color: $color-text-primary;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+@mixin card-header {
+  padding: $spacing-md;
+  border-bottom: $border-width-thin solid $color-border;
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: $color-text-primary;
+    font-weight: $font-weight-medium;
+  }
+}
+
+@mixin card-kpi {
+  @include card-base;
+  text-align: center;
+  padding: $spacing-lg;
+  
+  h1 {
+    font-size: $kpi-value-size;
+    color: $color-primary;
+    margin: 0 0 $spacing-sm;
+    font-weight: $font-weight-bold;
+  }
+  
+  p {
+    font-size: $kpi-label-size;
+    color: $color-text-secondary;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+// ==============================================
+// MIXINS DE TABLAS
+// ==============================================
+
+@mixin table-base {
+  width: 100%;
+  background-color: $table-bg;
+  border-radius: $border-radius-md;
+  overflow: hidden;
+  color: $color-text-primary;
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: $spacing-md;
+    text-align: left;
+    border-bottom: $border-width-thin solid $table-border-color;
+  }
+  
+  th {
+    background-color: $table-header-bg;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    position: sticky;
+    top: 0;
+    z-index: $z-index-sticky;
+    text-transform: uppercase;
+    font-size: $font-size-xs;
+    letter-spacing: 0.5px;
+  }
+  
+  tr {
+    transition: $transition-fast;
+    
+    &:hover {
+      background-color: $table-hover-bg;
+    }
+    
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+}
+
+@mixin table-container {
+  overflow: auto;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-sm;
+  max-height: 400px;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $color-surface-alt;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary;
+    border-radius: $border-radius-sm;
+  }
+}
+
+// ==============================================
+// MIXINS DE BOTONES
+// ==============================================
+
+@mixin button-base {
+  padding: $button-padding-y $button-padding-x;
+  border-radius: $button-border-radius;
+  border: none;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: $transition-base;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $font-size-sm;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $color-primary;
+  color: $color-background;
+  
+  &:hover:not(:disabled) {
+    background-color: $color-primary-light;
+    box-shadow: $shadow-primary;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: $color-primary-dark;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: transparent;
+  color: $color-primary;
+  border: $border-width-thin solid $color-primary;
+  
+  &:hover:not(:disabled) {
+    background-color: rgba($color-primary, 0.1);
+    border-color: $color-primary-light;
+  }
+}
+
+// ==============================================
+// MIXINS DE FORMULARIOS
+// ==============================================
+
+@mixin input-base {
+  background-color: $input-bg;
+  border: $border-width-thin solid $input-border-color;
+  border-radius: $border-radius-sm;
+  padding: $input-padding-y $input-padding-x;
+  color: $color-text-primary;
+  font-size: $font-size-base;
+  transition: $transition-fast;
+  width: 100%;
+  
+  &::placeholder {
+    color: $color-text-hint;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $input-focus-border-color;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+  }
+  
+  &:disabled {
+    background-color: $color-surface-alt;
+    color: $color-text-disabled;
+    cursor: not-allowed;
+  }
+}
+
+@mixin form-field {
+  margin-bottom: $spacing-md;
+  
+  label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    color: $color-text-secondary;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+  }
+  
+  input, select, textarea {
+    @include input-base;
+  }
+}
+
+// ==============================================
+// MIXINS DE LAYOUT
+// ==============================================
+
+@mixin page-header {
+  padding: $spacing-lg;
+  text-align: center;
+  
+  h1 {
+    font-size: $font-size-display;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin: 0;
+  }
+}
+
+@mixin content-container {
+  padding: $spacing-md;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// ==============================================
+// MIXINS DE RESPONSIVE
+// ==============================================
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == 'xxl' {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+// ==============================================
+// MIXINS DE ANIMACIONES
+// ==============================================
+
+@mixin pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}
+
+@mixin fade-in {
+  animation: fadeIn 0.3s ease-in;
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// ==============================================
+// MIXINS DE UTILIDADES
+// ==============================================
+
+@mixin truncate-text($lines: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  @if $lines == 1 {
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $color-surface-alt;
+    border-radius: $border-radius-sm;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $color-primary;
+    border-radius: $border-radius-sm;
+    
+    &:hover {
+      background: $color-primary-light;
+    }
+  }
+}

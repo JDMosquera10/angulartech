@@ -1,0 +1,13 @@
+/**
+ * Archivo principal de estilos compartidos
+ * Centraliza todas las importaciones para facilitar el uso
+ */
+
+// Variables de diseño
+@import 'variables';
+
+// Mixins reutilizables
+@import 'mixins';
+
+// Componentes y utilidades
+@import 'components';
