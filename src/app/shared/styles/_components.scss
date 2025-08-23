@@ -1,0 +1,436 @@
+/**
+ * Estilos compartidos para componentes comunes
+ * Clases CSS reutilizables para mantener consistencia visual
+ */
+
+@import 'variables';
+@import 'mixins';
+
+// ==============================================
+// BOTONES
+// ==============================================
+
+.btn {
+  @include button-base;
+  
+  &-primary {
+    @include button-primary;
+  }
+  
+  &-secondary {
+    @include button-secondary;
+  }
+  
+  &-danger {
+    @include button-base;
+    background-color: $color-danger;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: lighten($color-danger, 10%);
+      box-shadow: 0 0 20px rgba($color-danger, 0.3);
+    }
+  }
+  
+  &-success {
+    @include button-base;
+    background-color: $color-success;
+    color: white;
+    
+    &:hover:not(:disabled) {
+      background-color: lighten($color-success, 10%);
+      box-shadow: 0 0 20px rgba($color-success, 0.3);
+    }
+  }
+  
+  &-sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+  }
+  
+  &-lg {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-lg;
+  }
+  
+  &-block {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  &-icon {
+    padding: $spacing-sm;
+    min-width: auto;
+    
+    mat-icon {
+      margin: 0;
+    }
+  }
+}
+
+// ==============================================
+// FORMULARIOS
+// ==============================================
+
+.form-group {
+  @include form-field;
+}
+
+.form-control {
+  @include input-base;
+  
+  &-lg {
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-lg;
+  }
+  
+  &-sm {
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-sm;
+  }
+}
+
+.form-label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  color: $color-text-secondary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+}
+
+.form-hint {
+  display: block;
+  margin-top: $spacing-xs;
+  color: $color-text-hint;
+  font-size: $font-size-xs;
+}
+
+.form-error {
+  display: block;
+  margin-top: $spacing-xs;
+  color: $color-danger;
+  font-size: $font-size-xs;
+}
+
+// ==============================================
+// CARDS
+// ==============================================
+
+.card {
+  @include card-base;
+  
+  &-header {
+    @include card-header;
+  }
+  
+  &-body {
+    padding: $spacing-md;
+  }
+  
+  &-footer {
+    padding: $spacing-md;
+    border-top: $border-width-thin solid $color-border;
+  }
+  
+  &-hover {
+    cursor: pointer;
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
+  }
+  
+  &-flat {
+    box-shadow: none;
+    border: $border-width-thin solid $color-border;
+  }
+}
+
+// ==============================================
+// TABLAS
+// ==============================================
+
+.table-container {
+  @include table-container;
+  
+  table {
+    @include table-base;
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// ==============================================
+// BADGES Y CHIPS
+// ==============================================
+
+.badge {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  
+  &-primary {
+    background-color: rgba($color-primary, 0.2);
+    color: $color-primary;
+  }
+  
+  &-success {
+    background-color: rgba($color-success, 0.2);
+    color: $color-success;
+  }
+  
+  &-warning {
+    background-color: rgba($color-warning, 0.2);
+    color: $color-warning;
+  }
+  
+  &-danger {
+    background-color: rgba($color-danger, 0.2);
+    color: $color-danger;
+  }
+  
+  &-info {
+    background-color: rgba($color-info, 0.2);
+    color: $color-info;
+  }
+}
+
+// ==============================================
+// ALERTS
+// ==============================================
+
+.alert {
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  
+  &-primary {
+    background-color: rgba($color-primary, 0.1);
+    border-left: $border-width-thick solid $color-primary;
+    color: $color-primary;
+  }
+  
+  &-success {
+    background-color: rgba($color-success, 0.1);
+    border-left: $border-width-thick solid $color-success;
+    color: $color-success;
+  }
+  
+  &-warning {
+    background-color: rgba($color-warning, 0.1);
+    border-left: $border-width-thick solid $color-warning;
+    color: $color-warning;
+  }
+  
+  &-danger {
+    background-color: rgba($color-danger, 0.1);
+    border-left: $border-width-thick solid $color-danger;
+    color: $color-danger;
+  }
+}
+
+// ==============================================
+// LOADING STATES
+// ==============================================
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba($color-primary, 0.3);
+  border-radius: 50%;
+  border-top-color: $color-primary;
+  animation: spin 0.8s linear infinite;
+  
+  &-sm {
+    width: 16px;
+    height: 16px;
+  }
+  
+  &-lg {
+    width: 32px;
+    height: 32px;
+    border-width: 3px;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $color-surface-alt 25%,
+    $color-surface-elevated 50%,
+    $color-surface-alt 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: $border-radius-sm;
+  
+  &-text {
+    height: $font-size-base;
+    margin-bottom: $spacing-sm;
+    
+    &:last-child {
+      width: 80%;
+    }
+  }
+  
+  &-title {
+    height: $font-size-xl;
+    width: 50%;
+    margin-bottom: $spacing-md;
+  }
+  
+  &-button {
+    height: 36px;
+    width: 120px;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+// ==============================================
+// UTILIDADES DE ESPACIADO
+// ==============================================
+
+// Márgenes
+@each $size, $value in (
+  '0': 0,
+  '1': $spacing-sm,
+  '2': $spacing-md,
+  '3': $spacing-lg,
+  '4': $spacing-xl,
+  '5': $spacing-xxl
+) {
+  .m-#{$size} { margin: $value !important; }
+  .mt-#{$size} { margin-top: $value !important; }
+  .mr-#{$size} { margin-right: $value !important; }
+  .mb-#{$size} { margin-bottom: $value !important; }
+  .ml-#{$size} { margin-left: $value !important; }
+  .mx-#{$size} { 
+    margin-left: $value !important;
+    margin-right: $value !important;
+  }
+  .my-#{$size} { 
+    margin-top: $value !important;
+    margin-bottom: $value !important;
+  }
+}
+
+// Padding
+@each $size, $value in (
+  '0': 0,
+  '1': $spacing-sm,
+  '2': $spacing-md,
+  '3': $spacing-lg,
+  '4': $spacing-xl,
+  '5': $spacing-xxl
+) {
+  .p-#{$size} { padding: $value !important; }
+  .pt-#{$size} { padding-top: $value !important; }
+  .pr-#{$size} { padding-right: $value !important; }
+  .pb-#{$size} { padding-bottom: $value !important; }
+  .pl-#{$size} { padding-left: $value !important; }
+  .px-#{$size} { 
+    padding-left: $value !important;
+    padding-right: $value !important;
+  }
+  .py-#{$size} { 
+    padding-top: $value !important;
+    padding-bottom: $value !important;
+  }
+}
+
+// ==============================================
+// UTILIDADES DE LAYOUT
+// ==============================================
+
+.d-flex { display: flex !important; }
+.d-inline-flex { display: inline-flex !important; }
+.d-block { display: block !important; }
+.d-inline-block { display: inline-block !important; }
+.d-none { display: none !important; }
+
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+
+.justify-content-start { justify-content: flex-start !important; }
+.justify-content-end { justify-content: flex-end !important; }
+.justify-content-center { justify-content: center !important; }
+.justify-content-between { justify-content: space-between !important; }
+.justify-content-around { justify-content: space-around !important; }
+
+.align-items-start { align-items: flex-start !important; }
+.align-items-end { align-items: flex-end !important; }
+.align-items-center { align-items: center !important; }
+.align-items-baseline { align-items: baseline !important; }
+.align-items-stretch { align-items: stretch !important; }
+
+.flex-fill { flex: 1 1 auto !important; }
+.flex-grow-0 { flex-grow: 0 !important; }
+.flex-grow-1 { flex-grow: 1 !important; }
+.flex-shrink-0 { flex-shrink: 0 !important; }
+.flex-shrink-1 { flex-shrink: 1 !important; }
+
+.gap-1 { gap: $spacing-sm !important; }
+.gap-2 { gap: $spacing-md !important; }
+.gap-3 { gap: $spacing-lg !important; }
+.gap-4 { gap: $spacing-xl !important; }
+
+// ==============================================
+// UTILIDADES DE TEXTO
+// ==============================================
+
+.text-left { text-align: left !important; }
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+
+.text-lowercase { text-transform: lowercase !important; }
+.text-uppercase { text-transform: uppercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+
+.font-weight-light { font-weight: $font-weight-light !important; }
+.font-weight-normal { font-weight: $font-weight-regular !important; }
+.font-weight-medium { font-weight: $font-weight-medium !important; }
+.font-weight-bold { font-weight: $font-weight-bold !important; }
+
+.text-truncate {
+  @include truncate-text(1);
+}
+
+// ==============================================
+// UTILIDADES DE VISIBILIDAD
+// ==============================================
+
+.opacity-0 { opacity: 0 !important; }
+.opacity-25 { opacity: 0.25 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-75 { opacity: 0.75 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+.visible { visibility: visible !important; }
+.invisible { visibility: hidden !important; }

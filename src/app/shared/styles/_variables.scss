@@ -1,0 +1,171 @@
+/**
+ * Variables SCSS compartidas para toda la aplicación
+ * Sistema de diseño coherente y mantenible
+ */
+
+// Importar el tema personalizado
+@use 'sass:map';
+@use '../../../../custome-theme_theme-colors.scss' as theme;
+
+// ==============================================
+// COLORES PRINCIPALES
+// ==============================================
+
+// Colores primarios del tema
+$color-primary: #02BEC1;
+$color-primary-light: #68f7fa;
+$color-primary-dark: #00696b;
+$color-primary-alt: #04c0c3;
+
+// Colores de fondo y superficie
+$color-background: #192230;
+$color-surface: #202837;
+$color-surface-alt: #2b3232;
+$color-surface-elevated: #363d3d;
+$color-surface-container: #414848;
+
+// Colores de acción y estado
+$color-secondary: #F0961B;
+$color-secondary-light: #ffb86b;
+$color-tertiary: #A44A5D;
+$color-success: #4caf50;
+$color-warning: #f0961b;
+$color-danger: #f44336;
+$color-info: #2196f3;
+
+// Colores de texto
+$color-text-primary: #ffffff;
+$color-text-secondary: rgba(255, 255, 255, 0.7);
+$color-text-disabled: rgba(255, 255, 255, 0.38);
+$color-text-hint: rgba(255, 255, 255, 0.5);
+
+// Colores de borde y divisores
+$color-border: rgba(255, 255, 255, 0.12);
+$color-border-light: rgba(255, 255, 255, 0.08);
+$color-divider: rgba(255, 255, 255, 0.12);
+
+// ==============================================
+// ESPACIADO (Sistema de 8px)
+// ==============================================
+
+$spacing-unit: 8px;
+$spacing-xs: $spacing-unit * 0.5;    // 4px
+$spacing-sm: $spacing-unit;          // 8px
+$spacing-md: $spacing-unit * 2;      // 16px
+$spacing-lg: $spacing-unit * 3;      // 24px
+$spacing-xl: $spacing-unit * 4;      // 32px
+$spacing-xxl: $spacing-unit * 6;     // 48px
+
+// ==============================================
+// TIPOGRAFÍA
+// ==============================================
+
+$font-family-base: 'Roboto', 'Helvetica Neue', sans-serif;
+$font-size-base: 14px;
+$font-size-xs: 12px;
+$font-size-sm: 13px;
+$font-size-lg: 16px;
+$font-size-xl: 20px;
+$font-size-xxl: 24px;
+$font-size-display: 2.5rem;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$line-height-base: 1.5;
+$line-height-tight: 1.2;
+$line-height-loose: 1.8;
+
+// ==============================================
+// BORDES Y ESQUINAS
+// ==============================================
+
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+$border-radius-xxl: 24px;
+$border-radius-round: 50%;
+
+$border-width-thin: 1px;
+$border-width-medium: 2px;
+$border-width-thick: 4px;
+
+// ==============================================
+// SOMBRAS Y ELEVACIONES
+// ==============================================
+
+$shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-sm: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-md: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+$shadow-lg: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+$shadow-xl: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+
+// Sombras con color primario para elementos destacados
+$shadow-primary: 0 0 20px rgba($color-primary, 0.3);
+$shadow-primary-hover: 0 0 30px rgba($color-primary, 0.4);
+
+// ==============================================
+// TRANSICIONES Y ANIMACIONES
+// ==============================================
+
+$transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+// ==============================================
+// Z-INDEX
+// ==============================================
+
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// ==============================================
+// BREAKPOINTS RESPONSIVE
+// ==============================================
+
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// ==============================================
+// COMPONENTES ESPECÍFICOS
+// ==============================================
+
+// Cards
+$card-bg: $color-surface;
+$card-border-radius: $border-radius-md;
+$card-padding: $spacing-md;
+$card-shadow: $shadow-sm;
+
+// Tables
+$table-bg: $color-surface;
+$table-header-bg: $color-surface-alt;
+$table-border-color: $color-border;
+$table-hover-bg: rgba($color-primary, 0.08);
+
+// Buttons
+$button-padding-x: $spacing-md;
+$button-padding-y: $spacing-sm;
+$button-border-radius: $border-radius-sm;
+
+// Forms
+$input-bg: $color-surface-alt;
+$input-border-color: $color-border;
+$input-focus-border-color: $color-primary;
+$input-padding-x: $spacing-md;
+$input-padding-y: $spacing-sm;
+
+// KPIs
+$kpi-value-size: 3rem;
+$kpi-label-size: $font-size-sm;

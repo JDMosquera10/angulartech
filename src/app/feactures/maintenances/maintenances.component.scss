@@ -1,113 +1,323 @@
+/**
+ * Estilos del componente Maintenances
+ * Mantiene armonía con el dashboard usando variables y mixins compartidos
+ */
+
+@import '../../../app/shared/styles/variables';
+@import '../../../app/shared/styles/mixins';
+
+// ==============================================
+// CONTENEDOR PRINCIPAL
+// ==============================================
+
 :host {
-    display: block;
-    height: 100%;
-    width: 100%;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: $color-background;
+}
+
+// ==============================================
+// HEADER DE PÁGINA
+// ==============================================
+
+.mat-header-strong {
+  @include page-header;
+  @include fade-in;
 }
 
 .size-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    // color: var(--mat-sys-primary, #333);
-    margin: 0;
-    padding: 16px;
+  font-size: $font-size-display;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin: 0;
+  padding: $spacing-md;
 }
 
-.mat-header-strong {
-    display: flex;
-    padding: 1rem 1rem 0;
-    flex-direction: column;
-    align-items: center;
-}
+// ==============================================
+// CONTENEDOR DE CONTENIDO
+// ==============================================
 
 .content-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    justify-content: center;
-    padding: 1rem;
+  @include content-container;
+  @include fade-in;
+  animation-delay: 0.2s;
 }
+
+// ==============================================
+// CARD PRINCIPAL
+// ==============================================
 
 .chart-card {
-    width: 100% !important;
+  @include card-base;
+  width: 100% !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  mat-card-header {
+    padding: 0;
+    margin-bottom: $spacing-lg;
+  }
+  
+  mat-card-content {
+    padding: 0;
+  }
 }
+
+// ==============================================
+// HEADER DE CARD CON BÚSQUEDA Y BOTÓN
+// ==============================================
 
 .card-header-strong {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-
-// Estilos de la tabla de datos
-.mat-elevation-z8 {
-    overflow: auto;
-    width: 100%;
-    max-height: 400px; // ajusta la altura como necesites
-    // border: 1px solid #444;
-    border-radius: 8px;
-    // background-color: #1e1c1c; // fondo oscuro
-    color: #fff;
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-
-        th,
-        td {
-            // border-bottom: 1px solid #555;
-            padding: 12px 16px;
-        }
-
-        th {
-            // background-color: #2a2828;
-            font-weight: 600;
-            // color: #f1f1f1;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
-
-        // tr:hover {
-        //     background-color: #333;
-        // }
+  @include flex-between;
+  width: 100%;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  
+  // Campo de búsqueda personalizado
+  .custom-input {
+    flex: 1;
+    max-width: 400px;
+    
+    .mat-mdc-form-field-wrapper {
+      background-color: $input-bg !important;
+      border-radius: $border-radius-sm;
     }
+    
+    input {
+      color: $color-text-primary;
+      
+      &::placeholder {
+        color: $color-text-hint;
+      }
+    }
+    
+    mat-icon {
+      color: $color-text-secondary;
+    }
+  }
+  
+  // Botón agregar
+  .button-agregar {
+    @include button-primary;
+    
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
 }
 
-.mat-mdc-header-cell {
-    font-weight: bold;
-    color: var(--mat-sys-primary);
+// ==============================================
+// TABLA DE DATOS
+// ==============================================
+
+.mat-elevation-z8 {
+  @include table-container;
+  @include custom-scrollbar;
+  max-height: 600px;
+  background-color: transparent;
+  box-shadow: none;
+  
+  table {
+    @include table-base;
+  }
+  
+  // Columnas específicas
+  .mat-column-acciones {
+    width: 60px;
+    text-align: center;
+  }
+  
+  .mat-column-date {
+    width: 120px;
+  }
+  
+  .mat-column-type {
+    width: 120px;
+    
+    .preventive {
+      color: $color-info;
+    }
+    
+    .corrective {
+      color: $color-warning;
+    }
+  }
+  
+  .mat-column-spareParts {
+    max-width: 300px;
+    @include truncate-text(2);
+  }
 }
 
-// .mat-mdc-row:hover {
-//     background-color: rgba(0, 0, 0, 0.04);
-// }
+// ==============================================
+// MENÚ DE ACCIONES
+// ==============================================
 
-.mat-column-position {
-    width: 80px;
+mat-menu {
+  .mat-mdc-menu-content {
+    background-color: $color-surface-elevated;
+    
+    button {
+      color: $color-text-primary;
+      
+      &:hover {
+        background-color: rgba($color-primary, 0.1);
+      }
+      
+      mat-icon {
+        color: $color-primary;
+        margin-right: $spacing-sm;
+      }
+    }
+  }
 }
 
-.mat-column-symbol {
-    width: 100px;
+// ==============================================
+// PAGINADOR
+// ==============================================
+
+mat-paginator {
+  background-color: $color-surface;
+  color: $color-text-primary;
+  border-top: $border-width-thin solid $color-border;
+  margin-top: $spacing-md;
+  border-radius: 0 0 $border-radius-md $border-radius-md;
 }
 
-.chart-card-content {
-    height: 100%;
-}
+// ==============================================
+// ESTILOS DEL MODAL
+// ==============================================
 
-// end table styles
-
-
-// modal style
 ::ng-deep .custom-dialog-container {
-    border-radius: 16px;
-    // background-color: #1a1a1a; // ejemplo de fondo oscuro
-    box-shadow: 0px 0px 10px var(--mat-sys-primary, #333);
-    padding: 16px;
+  @include card-base;
+  border-radius: $border-radius-xl;
+  padding: $spacing-lg;
+  max-width: 600px;
+  box-shadow: $shadow-primary;
+  
+  .mat-mdc-dialog-title {
+    color: $color-text-primary;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-medium;
+    margin-bottom: $spacing-lg;
+  }
+  
+  .mat-mdc-dialog-content {
+    color: $color-text-secondary;
+    
+    // Campos del formulario en el modal
+    .mat-mdc-form-field {
+      margin-bottom: $spacing-md;
+      
+      .mat-mdc-text-field-wrapper {
+        background-color: $input-bg;
+      }
+    }
+  }
+  
+  .mat-mdc-dialog-actions {
+    padding-top: $spacing-lg;
+    gap: $spacing-md;
+    
+    button {
+      @include button-base;
+      
+      &.mat-primary {
+        @include button-primary;
+      }
+      
+      &.mat-mdc-dialog-close {
+        @include button-secondary;
+      }
+    }
+  }
 }
 
-// ::ng-deep .cdk-overlay-backdrop {
-//   background-color: rgba(0, 0, 0, 0.7); // más suave que el default
-// }
+// ==============================================
+// RESPONSIVE
+// ==============================================
+
+@include responsive('md') {
+  .card-header-strong {
+    flex-direction: row;
+    
+    .custom-input {
+      max-width: 400px;
+    }
+  }
+}
+
+@include responsive('sm') {
+  .card-header-strong {
+    flex-direction: column;
+    align-items: stretch;
+    
+    .custom-input {
+      max-width: 100%;
+    }
+    
+    .button-agregar {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  
+  .mat-elevation-z8 {
+    max-height: 400px;
+  }
+  
+  .size-title {
+    font-size: $font-size-xxl;
+  }
+}
+
+// ==============================================
+// ANIMACIONES
+// ==============================================
+
+// Animación para las filas de la tabla
+.mat-mdc-row {
+  @include fade-in;
+  
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.05}s;
+    }
+  }
+}
+
+// Hover effect en iconos de acción
+.mat-mdc-icon-button {
+  transition: $transition-fast;
+  
+  &:hover {
+    color: $color-primary;
+    transform: scale(1.1);
+  }
+}
+
+// ==============================================
+// ESTADOS VISUALES
+// ==============================================
+
+// Indicadores de tipo de mantenimiento
+.maintenance-type-indicator {
+  display: inline-block;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $border-radius-sm;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  &.preventive {
+    background-color: rgba($color-info, 0.2);
+    color: $color-info;
+  }
+  
+  &.corrective {
+    background-color: rgba($color-warning, 0.2);
+    color: $color-warning;
+  }
+}
